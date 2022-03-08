@@ -23,6 +23,7 @@ services:
     # build: ./speedtest
     image: pedrocesarti/internet-speedtest-docker:speedtest
     container_name: speedtest
+    hostname: testing-network1
     links:
       - db:db
     env_file:

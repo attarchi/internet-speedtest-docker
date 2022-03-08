@@ -88,7 +88,13 @@
               "refId": "A",
               "dsType": "influxdb",
               "resultFormat": "time_series",
-              "tags": [],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$hostvariable$/"
+                }
+              ],
               "groupBy": [
                 {
                   "type": "time",
@@ -207,7 +213,13 @@
               "refId": "A",
               "dsType": "influxdb",
               "resultFormat": "time_series",
-              "tags": [],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$hostvariable$/"
+                }
+              ],
               "groupBy": [
                 {
                   "type": "time",
@@ -328,7 +340,13 @@
               "refId": "A",
               "dsType": "influxdb",
               "resultFormat": "time_series",
-              "tags": [],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$hostvariable$/"
+                }
+              ],
               "groupBy": [
                 {
                   "type": "time",
@@ -407,7 +425,23 @@
     ]
   },
   "templating": {
-    "list": []
+    "list": [
+      {
+        "definition": "SELECT * FROM \"download\"",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Host",
+        "multi": false,
+        "name": "hostvariable",
+        "options": [],
+        "query": "SELECT * FROM \"download\"",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
   },
   "annotations": {
     "list": []
