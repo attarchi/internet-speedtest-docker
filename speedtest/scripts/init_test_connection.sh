@@ -2,8 +2,12 @@
 FILE="/app/speedtest/test_connection.log"
 
 HOSTNAME_COMMAND=${HOSTNAME_COMMAND:=hostname}
-if ! HOSTVALUE=$($HOSTNAME_COMMAND 2>&1); then
-        HOSTVALUE=local
+HOSTVALUE=$($HOSTNAME_COMMAND 2>&1)
+
+if [ -z "$HOSTVALUE" ] 
+then
+    echo "\$The caption of the host is not reachable!"
+    exit 1
 fi
 
 DATABASE_PATH=${DATABASE_PATH:=db}
