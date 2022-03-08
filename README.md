@@ -72,6 +72,7 @@ If you are using docker-compose to standup you stack you can easily change the v
 | **TEST_INTERVAL** | 5 | Time (in sec.) to set how long will sleep the script until run again. |
 | **TEST_SERVER** | null| [ID of a test server](https://williamyaps.github.io/wlmjavascript/servercli.html) instead of the one defined by default by speedtest-cli. |
 | **HOSTNAME_COMMAND** | hostname |A command for discovering a value of the Host field. It helps to differentiate between some Speedtest containers.|
+| **DATABASE_PATH** | db | Database server name / IP |
 
 If you want to set the host field to the container public ip, you can set HOSTNAME_COMMAND to the public ip query:
 ```

@@ -6,6 +6,8 @@ if ! HOSTVALUE=$($HOSTNAME_COMMAND 2>&1); then
         HOSTVALUE=local
 fi
 
+DATABASE_PATH=${DATABASE_PATH:=db}
+
 while true 
 do 
     TIMESTAMP=$(date '+%s')
@@ -21,9 +23,9 @@ do
     UPLOAD=$(cat $FILE | grep "Upload:" | awk -F " " '{print $2}')
     PING=$(ping -qc1 google.com 2>&1 | awk -F'/' 'END {print (/^round-trip/? $4:"-100")}')
     echo "Download: $DOWNLOAD Upload: $UPLOAD Ping: $PING   $TIMESTAMP"
-    curl -i -XPOST 'http://db:8086/write?db=speedtest' --data-binary "download,host=$HOSTVALUE value=$DOWNLOAD"
-    curl -i -XPOST 'http://db:8086/write?db=speedtest' --data-binary "upload,host=$HOSTVALUE value=$UPLOAD"
-    curl -i -XPOST 'http://db:8086/write?db=speedtest' --data-binary "ping,host=$HOSTVALUE value=$PING"
+    curl -i -XPOST "http://${DATABASE_PATH}:8086/write?db=speedtest" --data-binary "download,host=$HOSTVALUE value=$DOWNLOAD"
+    curl -i -XPOST "http://${DATABASE_PATH}:8086/write?db=speedtest" --data-binary "upload,host=$HOSTVALUE value=$UPLOAD"
+    curl -i -XPOST "http://${DATABASE_PATH}:8086/write?db=speedtest" --data-binary "ping,host=$HOSTVALUE value=$PING"
     sleep $TEST_INTERVAL
 
 done
